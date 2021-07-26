@@ -4,9 +4,7 @@ import sys
 import re
 import os
 import rutas.picante as picantes
-from api_key import API_KEY
-# import repl
-
+from api_key import API_KEY, KEY
 # Controladores de Comandos
 # comand /start
 def start(update, context):
@@ -28,14 +26,6 @@ def picante(update, context):
             ]
         update.message.reply_text("Por favor seleccione el nivel de Picante:",reply_markup=InlineKeyboardMarkup.from_column(options))
        
-  
-
-
-def exit(update, context):
-   
-    pass
-
-
 # Message handlers
 def default(update, context):
    
@@ -93,9 +83,8 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("picante", picante))
     dp.add_handler(CommandHandler("exit", exit))
-    dp.add_handler(MessageHandler(Filters.text, default))
-
     dp.add_handler(CallbackQueryHandler(button))
+    
 
     updater.start_polling()
     updater.idle()
